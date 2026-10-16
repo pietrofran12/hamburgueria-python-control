@@ -6,6 +6,7 @@ estoque = [
     ["Refrigerante", 9] # Linha 4
 ]    # Coluna 0  ,  1   
 fila_entrega = []
+carrinho_cliente = []
 
 # Loop de pedidos e estoque
 for insumo in estoque:
@@ -15,8 +16,8 @@ for insumo in estoque:
     ingrediente_estoque = insumo[0]
     quantidade_estoque = insumo[1]
     # Verificador de quantidade no estoque
-    if quantidade_estoque <5:
-        print(f"ALERTA: Estoque baixo de {ingrediente_estoque}. Há apenas {quantidade_estoque} no estoque!")
+    if quantidade_estoque < 5:
+        print(f"ALERTA: Estoque baixo de {ingrediente_estoque}, apenas {quantidade_estoque} encontrado(s) no estoque!")
         pass
 
 # Entrada e armazenamento dos dados do cliente
@@ -25,14 +26,26 @@ if cliente_nome not in fila_entrega:
     fila_entrega.append(cliente_nome)
 
 # Entrada do pedido e exibição do cardápio ao cliente
-print(f"Nós temos hoje no cardápio:\n- {estoque[1][0]}\n- {estoque[4][0]}")
+print(f"Nosso cardápio:\n- {estoque[1][0]}\n- {estoque[4][0]}")
 pedido_cliente = input(f"O que gostaria de pedir hoje {cliente_nome}? ").lower().strip()
 
 disponivel = True
 
 while True:      
     # Condição para encerrar o programa
-    if pedido_cliente == "sair":
+    if pedido_cliente == "meu carrinho":
+        if len(carrinho_cliente) > 0:
+            print("No seu carrinho já está incluso:")
+            for item in carrinho_cliente:
+                match item:
+                    case "Hambúrguer" | "Refrigerante" | "Batata Frita" | "Sorvete":
+                        print(f"- {item}")
+                        pedido_cliente = input("\nGostaria de pedir algo mais?(digite SAIR para finalizar)  ").lower().strip()
+        else:
+            print("Carrinho vazio!\n")
+            pedido_cliente = input(f"Gostaria de começar a pedir? ").lower().strip()
+
+    elif pedido_cliente == "sair":
         break
 
     match pedido_cliente:
@@ -57,6 +70,7 @@ while True:
                     if ingrediente[0] == "Hambúrguer":
                         ingrediente[1] += 1
                         ingrediente[1] -= 1
+                        carrinho_cliente.append("Hambúrguer")
                         
             print(f"Seu {estoque[1][0]} está sendo preparado!")
         
@@ -72,23 +86,14 @@ while True:
                     for ingrediente in estoque:
                         if ingrediente[0] == "Refrigerante":
                             ingrediente[1] -= 1
+                            carrinho_cliente.append("Refrigerante")
             print(f"Seu {estoque[4][0]} foi incluído no seu pedido!")
         
         case _:
-            print("Pedido não encontrado em nosso menu! Por favor, escolhe algo que estiver em nosso cardápio!")
+            print("Pedido não encontrado em nosso menu! Por favor, escolha algo que estiver em nosso cardápio!")
 
-    # Jeito ineficiente de reduzir o estoque
-    # match pedido_cliente:
-    #     case "hamburguer" | "hambúrguer" | "burguer":
-    #          quantidade_estoque[0][1] = quantidade_estoque[0][1] - 1
-    #          quantidade_estoque[1][1] = quantidade_estoque[1][1] - 1
-    #          quantidade_estoque[2][1] = quantidade_estoque[2][1] - 1
-    #          quantidade_estoque[3][1] = quantidade_estoque[3][1] - 1
-    #     case "refrigerante" | "refri":
-    #         quantidade_estoque[4][1] = 
-
-    pedido_cliente = input(f"Gostaria de pedir algo mais?(digite SAIR para finalizar)  ").lower().strip()
-cliente_atendido = fila_entrega.pop(0)
+    pedido_cliente = input("Gostaria de pedir algo mais?(digite SAIR para finalizar)  ").lower().strip()
+fila_entrega.pop(0)
 print("Obrigado por pedir conosco!")
 
 """
