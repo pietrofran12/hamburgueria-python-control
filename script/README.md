@@ -15,15 +15,15 @@ Este é um sistema de automação para painel de cozinha e gerenciamento de esto
 *   **Controle de Loops:** Estruturas dinâmicas com `while True`, loops infinitos controlados por interrupções (`break`) e varreduras com `for`.
 *   **Estruturas de Decisão Avançadas:** Combinação de `match/case` com condições compostas (`if / and`).
 *   **Coleções de Dados (Listas e Matrizes):** Manipulação dinâmica de arrays estruturados em linhas e colunas, além de controle de tamanho com `len()` e inserções com `.append()`.
-*   **Clean Code:** Código limpo e otimizado, evitando repetições desnecessárias (anti-Ctrl+C/Ctrl+V) e utilizando operadores simplificados de atribuição como `-=`.
+*   **Clean Code:** Código limpo e otimizado, evitando repetições desnecessárias e utilizando operadores simplificados de atribuição como `-=`.
 
 ## 📁 Estrutura do Repositório
 
 ```text
-burger-shop-system/
-├── src/
-│   └── painel_pedidos.py  # Arquivo principal com o código-fonte do sistema
-└── README.md              # Documentação do projeto
+hamburgueria-python-control/
+└── src/
+    ├── painel_pedidos.py  # Arquivo principal com o código-fonte do sistema
+    └── README.md          # Documentação do projeto
 ```
 
 ## 🧠 Aprendizado Desenvolvido
